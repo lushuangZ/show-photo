@@ -1,0 +1,188 @@
+*{
+    padding: 0;
+    margin: 0;
+    list-style:none;
+}
+html, body, .wrapper{
+    width: 100%;
+    height:100%;
+}
+.wrapper{
+    /* flex弹性布局，用来为盒子模型提供最大灵活 */
+    display: flex;
+    /* 用于设置或者检索弹性盒子元素在主轴方向的对齐方式 */
+    justify-content: center;
+    /* 定义flex子项在flex容器的当前行的侧轴方向上的对齐方式 */
+    align-items: center;
+    background: #000;
+}
+.wrapper .contest{
+    display: flex;
+    /* 在主轴方向的两边 */
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    height:80%
+}
+/* 为什么要再设一次 */
+.contest{
+    width: 100%;
+    height:100%;
+}
+/* li在ul的范围和属性 */
+.item{
+    width:16%;
+    height: 100%;
+    background:#333;
+    border-radius: 20px;
+    /* 超出部分隐藏 */
+    overflow: hidden;
+    /* 关闭图片  过渡动画:过度动画的css、过渡时间、指定过度函数、延迟时间*/
+    transition: height 0.5s linear 0.5s , width 0.5s linear ;
+}
+/* 点开图片通过js添加class类名 */
+.wrapper-active .contest .item{
+    transition: height 0.5s linear ,width 0.5s linear 0.5s;
+}
+.item.active{
+    width: 100%;
+}
+/*设置除.active以外的li的属性 */
+.wrapper-active .item:not(.active){
+    width:0%;
+    height: 0%;
+}
+.item .all{
+    position: relative;
+    width:100%;
+    height: 100%;
+    transition: transform 0.5s linear;
+}
+.item:nth-of-type(1) .all{
+    /* 延迟时间 */
+    transition-delay: 0.1s
+}
+.item:nth-of-type(2) .all{
+    /* 延迟时间 */
+    transition-delay: 0.2s
+}
+.item:nth-of-type(3) .all{
+    /* 延迟时间 */
+    transition-delay: 0.3s
+}
+.item:nth-of-type(4) .all{
+    /* 延迟时间 */
+    transition-delay: 0.4s
+}
+.item:nth-of-type(5) .all{
+    /* 延迟时间 */
+    transition-delay: 0.5s
+}
+.item:nth-of-type(6) .all{
+    /* 延迟时间 */
+    transition-delay: 0.6s
+}
+.init .item .all{
+    transform: translate3d(0,100%,0);
+}
+.item .all .show{
+    width: 100%;
+    height:100%;
+    border-radius: 20px;
+    overflow: hidden;
+    /* 背景大小覆盖 */
+    background-size:cover;
+    background-position:center;
+    opacity: 0.5;
+}
+.item:nth-child(1) .all .show{
+    background-image: url(./img/1.jpg);
+}
+.item:nth-child(2) .all .show{
+    background-image: url(./img/2.jpg);
+}
+.item:nth-child(3) .all .show{
+    background-image: url(./img/3.jpg);
+}
+.item:nth-child(4) .all .show{
+    background-image: url(./img/4.jpg);
+}
+.item:nth-child(5) .all .show{
+    background-image: url(./img/5.jpg);
+}
+.item:nth-child(6) .all .show{
+    background-image: url(./img/6.jpg);
+}
+.item .out{
+    position: absolute;
+    top: 50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    opacity: 1;
+    /* 关闭图片时，文字1s后显示 */
+    transition: opacity 0.2s linear 1s;
+}
+.item .all .out h3{
+    font-size: 16px;
+    color:#fff;
+}
+/* 点开图片 文字立刻隐藏 */
+.wrapper-active .item .out{
+    opacity: 0;
+    transition: opacity 0.2s linear;
+} 
+.item:hover .out h3{
+    font-size: 24px;
+    transition: font-size 0.2s linear;
+}
+.item:hover .show{
+    opacity: 1;
+    transition: opacity 0.2s linear;
+}
+.item .all .inner{
+    position: absolute;
+    top: 50px;
+    width: 100%;
+    height: 30px;
+    opacity: 0;
+}
+/* 点开图片时，bird tab 1s后显示 */
+.wrapper-active .item .all .inner{
+    opacity: 1;
+    transform: opacity 0.5s linear 1s;
+}
+.item .all .inner .namer{
+    position: absolute;
+    left: 50px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #fff;
+    font-size: 24px;
+}
+.item .all .inner .tab{
+    position: absolute;
+    right: 50px;
+    color: #fff;
+    width: 30px;
+    height:30px;
+}
+.active .all .inner .tab{
+    transform:rotate(360deg);
+    transition: transform 0.5s linear 1s;
+}
+/* 伪类元素制作X号 */
+.tab:before, .tab:after{
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 30px;
+    height:4px;
+    margin-left: -2px;
+    background: #fff;
+}
+.tab:before{
+    transform: rotate(45deg);
+}
+.tab:after{
+    transform: rotate(-45deg);
+}
